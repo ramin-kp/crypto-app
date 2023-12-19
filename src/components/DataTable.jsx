@@ -4,7 +4,7 @@ import chartDown from "/images/assets/chart-down.svg";
 export default function DataTable({ allCoins }) {
   return (
     <div className="w-full overflow-x-auto">
-      <table className="table w-full min-w-full">
+      <table className="table-auto md:table-fixed w-full">
         <thead className="border-b-2 border-white pb-5 ">
           <tr className="child:text-center child:py-5">
             <th>coin</th>
@@ -43,15 +43,15 @@ const DataRow = ({
           <span>{symbol.toUpperCase()}</span>
         </div>
       </td>
-      <td className=" !px-10">{name.toUpperCase()}</td>
+      <td className="!px-10">{name.toUpperCase()}</td>
       <td >${current_price.toLocaleString()}</td>
       <td className={`${price_change > 0 ? "text-green-500" : "text-red-500"} w-40 md:w-auto`}>
         {price_change.toFixed(2)}%
       </td>
       <td >{total_volume.toLocaleString()}</td>
-      <td >
+      <td className="px-10 min-w-[100px] md:w-auto">
         <img
-          className="w-10 h-8 md:min-w-max mx-auto"
+          className="shrink-0 w-full h-full md:w-auto md:h-auto"
           src={price_change > 0 ? chartUp : chartDown}
           alt={name}
         />
