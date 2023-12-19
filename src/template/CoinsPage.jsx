@@ -2,19 +2,22 @@ import React, { useEffect, useState } from "react";
 import DataTable from "../components/DataTable";
 import CoinsApi from "../services/coinApi";
 import { Rings } from "react-loader-spinner";
+import Pagination from "../components/Pagination";
 
 export default function CoinsPage() {
   const [coins, setCoins] = useState([]);
+  const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    setIsLoading(true);
     const getData = async () => {
-      const res = await fetch(CoinsApi());
+      const res = await fetch(CoinsApi(page));
       const json = await res.json();
       setCoins(json);
-        setIsLoading(false);
+      setIsLoading(false);
     };
     getData();
-  }, []);
+  }, [page]);
   console.log(coins);
   return (
     <div className="container">
@@ -32,7 +35,10 @@ export default function CoinsPage() {
           />
         </div>
       ) : (
-        <DataTable allCoins={coins} />
+        <>
+          <DataTable allCoins={coins} />
+          <Pagination page={page} setPage={setPage} />
+        </>
       )}
     </div>
   );

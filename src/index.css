@@ -7,4 +7,8 @@ body {
   background-color: #1b1b23;
   color: #ffffff;
 }
-
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+}

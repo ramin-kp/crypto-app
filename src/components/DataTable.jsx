@@ -44,11 +44,15 @@ const DataRow = ({
         </div>
       </td>
       <td className="!px-10">{name.toUpperCase()}</td>
-      <td >${current_price.toLocaleString()}</td>
-      <td className={`${price_change > 0 ? "text-green-500" : "text-red-500"} w-40 md:w-auto`}>
+      <td>${current_price.toLocaleString()}</td>
+      <td
+        className={`${
+          price_change > 0 ? "text-green-500" : "text-red-500"
+        } w-40 md:w-auto`}
+      >
         {price_change.toFixed(2)}%
       </td>
-      <td >{total_volume.toLocaleString()}</td>
+      <td>{total_volume.toLocaleString()}</td>
       <td className="px-10 min-w-[100px] md:w-auto">
         <img
           className="shrink-0 w-full h-full md:w-auto md:h-auto"
