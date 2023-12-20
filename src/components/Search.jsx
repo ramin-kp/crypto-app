@@ -39,11 +39,12 @@ export default function Search({ currency, setCurrency }) {
       <input
         className="px-2.5 py-2 font-medium bg-transparent outline-none rounded border border-slate-600"
         type="text"
+        placeholder="search coin name ..."
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
       <select
-        className="px-2.5 py-2 ml-5 font-medium child:font-medium bg-transparent child:bg-black child:text-white border border-slate-600 text-white rounded"
+        className="px-2.5 py-2 ml-5 font-medium child:font-medium bg-transparent child:bg-black child:text-white border border-slate-600 text-white rounded outline-none"
         value={currency}
         onChange={(e) => setCurrency(e.target.value)}
       >
