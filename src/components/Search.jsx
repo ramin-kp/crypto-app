@@ -52,7 +52,7 @@ export default function Search({ currency, setCurrency }) {
         <option value="jpy">JPY</option>
       </select>
       {(!!coins.length || isLoading) && (
-        <div className="absolute inset-0 top-[90px] w-[250px] h-[300px] px-2.5 py-5 bg-zinc-800 rounded overflow-y-auto no-scrollbar">
+        <div className="absolute inset-0 top-[90px] w-[250px] h-[300px] p-2.5  bg-zinc-800 rounded overflow-y-auto no-scrollbar">
           {isLoading && (
             <Rings
               height="200"
