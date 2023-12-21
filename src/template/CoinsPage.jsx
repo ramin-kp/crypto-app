@@ -5,6 +5,8 @@ import Pagination from "../components/Pagination";
 import Search from "../components/Search";
 import { CoinsApi } from "../services/coinApi";
 import Charts from "../components/Charts";
+import Layout from "../components/Layout";
+import Footer from "../components/Footer";
 
 export default function CoinsPage() {
   const [coins, setCoins] = useState([]);
@@ -28,6 +30,7 @@ export default function CoinsPage() {
   console.log(chartData);
   return (
     <div className="container">
+      <Layout />
       <Search currency={currency} setCurrency={setCurrency} />
       {isLoading ? (
         <div className="flex items-center justify-center w-full h-[1000px]">
@@ -62,6 +65,7 @@ export default function CoinsPage() {
           coins={coins}
         />
       )}
+      <Footer />
     </div>
   );
 }
