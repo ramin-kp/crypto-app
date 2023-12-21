@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.coingecko.com/api/v3/";
+const BASE_URL = "https://api.coingecko.com/api/v3";
 const API_KEY = "CG-JcM7P2t3a2XbA2gkgYzxEab5";
 
 const CoinsApi = (page, currency) =>
@@ -7,4 +7,7 @@ const CoinsApi = (page, currency) =>
 const searchApi = (query) =>
   `${BASE_URL}/search?query=${query}&x_cg_demo_api_key=${API_KEY}`;
 
-export { CoinsApi, searchApi };
+const chartsApi = (name, date) =>
+  `${BASE_URL}/coins/${name}/market_chart?vs_currency=usd&days=${date}&x_cg_demo_api_key=${API_KEY}`;
+
+export { CoinsApi, searchApi, chartsApi };

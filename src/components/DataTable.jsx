@@ -1,7 +1,8 @@
 import React from "react";
 import chartUp from "/images/assets/chart-up.svg";
 import chartDown from "/images/assets/chart-down.svg";
-export default function DataTable({ allCoins }) {
+import { chartsApi } from "../services/coinApi";
+export default function DataTable({ allCoins, setChartData, setIsShowModal }) {
   return (
     <div className="w-full overflow-x-auto">
       <table className="table-auto md:table-fixed w-full">
@@ -17,7 +18,12 @@ export default function DataTable({ allCoins }) {
         </thead>
         <tbody>
           {allCoins.map((coin) => (
-            <DataRow coin={coin} key={coin.id} />
+            <DataRow
+              coin={coin}
+              key={coin.id}
+              setIsShowModal={setIsShowModal}
+              setChartData={setChartData}
+            />
           ))}
         </tbody>
       </table>
@@ -25,19 +31,25 @@ export default function DataTable({ allCoins }) {
   );
 }
 
-const DataRow = ({
-  coin: {
+const DataRow = ({ coin, setIsShowModal, setChartData }) => {
+  const {
+    id,
     name,
     image,
     symbol,
     total_volume,
     price_change_percentage_24h: price_change,
     current_price,
-  },
-}) => {
+  } = coin;
+  const showHandler = async () => {
+    const res = await fetch(chartsApi(id, 7));
+    const json = await res.json();
+    setIsShowModal(true);
+    setChartData({ ...json, coin });
+  };
   return (
     <tr className="child:py-2.5 child:px-5 child:text-center child:font-medium child:text-sm">
-      <td>
+      <td className="cursor-pointer" onClick={showHandler}>
         <div className="flex items-center gap-x-2 lg:gap-x-5 min-w-max">
           <img className="w-10 h-10" src={image} alt={name} />
           <span>{symbol.toUpperCase()}</span>

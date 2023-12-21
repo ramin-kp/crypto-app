@@ -4,12 +4,17 @@ import { Rings } from "react-loader-spinner";
 import Pagination from "../components/Pagination";
 import Search from "../components/Search";
 import { CoinsApi } from "../services/coinApi";
+import Charts from "../components/Charts";
 
 export default function CoinsPage() {
   const [coins, setCoins] = useState([]);
   const [page, setPage] = useState(1);
   const [currency, setCurrency] = useState("usd");
   const [isLoading, setIsLoading] = useState(true);
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [type, setType] = useState("prices");
+  const [chartData, setChartData] = useState([]);
+
   useEffect(() => {
     setIsLoading(true);
     const getData = async () => {
@@ -20,6 +25,7 @@ export default function CoinsPage() {
     };
     getData();
   }, [page, currency]);
+  console.log(chartData);
   return (
     <div className="container">
       <Search currency={currency} setCurrency={setCurrency} />
@@ -38,10 +44,24 @@ export default function CoinsPage() {
         </div>
       ) : (
         <>
-          <DataTable allCoins={coins} />
+          <DataTable
+            allCoins={coins}
+            setChartData={setChartData}
+            setIsShowModal={setIsShowModal}
+          />
         </>
       )}
       <Pagination page={page} setPage={setPage} />
+      {isShowModal && (
+        <Charts
+          isShowModal={isShowModal}
+          setIsShowModal={setIsShowModal}
+          chartData={chartData}
+          type={type}
+          setType={setType}
+          coins={coins}
+        />
+      )}
     </div>
   );
 }
