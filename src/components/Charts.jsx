@@ -13,7 +13,6 @@ import {
 export default function Charts({ setIsShowModal, chartData, type, setType }) {
   const { coin } = chartData;
   const [data, setData] = useState([]);
-  console.log(chartData);
 
   useEffect(() => {
     setData(covertData(chartData, type));
